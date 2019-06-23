@@ -940,11 +940,8 @@ int TGenWeapon::smiteWithMe(TBeing *ch, TBeing *v)
   affectedData aff;
   byte bKnown = ch->getSkillValue(SKILL_SMITE);
 
-  if ((objVnum() != Obj::WEAPON_AVENGER1) &&
-      (objVnum() != Obj::WEAPON_AVENGER2) &&
-      (objVnum() != Obj::WEAPON_AVENGER3)) {
-    ch->sendTo(COLOR_OBJECTS, format("%s has no respect for someone using %s.\n\r") %
-        sstring(ch->yourDeity(SKILL_SMITE, FIRST_PERSON)).cap() % getName());
+  if (!isPaired()) {
+    ch->sendTo("You must use a paired weapon to smite.\n\r");
     return FALSE;
   }
 
@@ -959,13 +956,14 @@ int TGenWeapon::smiteWithMe(TBeing *ch, TBeing *v)
   }
   int dam = ch->getSkillDam(v, SKILL_SMITE, ch->getSkillLevel(SKILL_SMITE), ch->getAdvLearning(SKILL_SMITE));
 
+  // TODO: Should this be removed
   if (!ch->isOppositeFaction(v)) {
     SV(SKILL_SMITE);
     dam /= 2;
   }
 
   aff.type = AFFECT_SKILL_ATTEMPT;
-  aff.duration = 2 * Pulse::UPDATES_PER_MUDHOUR;
+  aff.duration = 1 * Pulse::UPDATES_PER_MUDHOUR;
   aff.modifier = SKILL_SMITE;
   aff.location = APPLY_NONE;
   aff.bitvector = 0;
@@ -990,9 +988,9 @@ int TGenWeapon::smiteWithMe(TBeing *ch, TBeing *v)
   }
 
   aff.type = SKILL_SMITE;
-  aff.duration = 30 * Pulse::UPDATES_PER_MUDHOUR;
-  aff.modifier = 0;
-  aff.location = APPLY_NONE;
+  aff.duration = 2 * Pulse::UPDATES_PER_MUDHOUR;
+  aff.modifier = 10 + (2 * ch->GetMaxLevel());
+  aff.location = APPLY_ARMOR;
   aff.bitvector = 0;
   ch->affectTo(&aff, -1);
 

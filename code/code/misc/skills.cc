@@ -623,7 +623,7 @@ CSkill *TBeing::getSkill(spellNumT skill) const
     case SKILL_RESCUE_DEIKHAN:  //            424
       return &((CDDeikhan *) cd)->skRescueDeikhan;
     case SKILL_SMITE:  //                    425
-      return &((CDDeikhan *) cd)->skSmite;
+      return &((CDDeikhanWrath *) cd)->skSmite;
     case SPELL_INFECT_DEIKHAN:  //            426
       return &((CDDeikhan *) cd)->skInfectDeikhan;
     case SPELL_CURE_DISEASE_DEIKHAN:  //      427

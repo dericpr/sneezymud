@@ -29,6 +29,7 @@ class CDDeikhanWrath : public CDiscipline
 public:
     CSkill skHarmDeikhan;
     CSkill skNumbDeikhan;
+    CSkill skSmite;
     CSkill skEarthquakeDeikhan;
     CSkill skCallLightningDeikhan;
     CSkill skHolyLight;    // not coded
@@ -37,6 +38,7 @@ public:
       : CDiscipline(),
       skHarmDeikhan(),
       skNumbDeikhan(),
+      skSmite(),
       skEarthquakeDeikhan(),
       skCallLightningDeikhan(),
       skHolyLight() {
@@ -45,6 +47,7 @@ public:
       : CDiscipline(a),
       skHarmDeikhan(a.skHarmDeikhan),
       skNumbDeikhan(a.skNumbDeikhan),
+      skSmite(a.skSmite),
       skEarthquakeDeikhan(a.skEarthquakeDeikhan),
       skCallLightningDeikhan(a.skCallLightningDeikhan),
       skHolyLight(a.skHolyLight) {
@@ -54,6 +57,7 @@ public:
       CDiscipline::operator=(a);
       skHarmDeikhan = a.skHarmDeikhan;
       skNumbDeikhan = a.skNumbDeikhan;
+      skSmite = a.skSmite;
       skEarthquakeDeikhan = a.skEarthquakeDeikhan;
       skCallLightningDeikhan = a.skCallLightningDeikhan;
       skHolyLight = a.skHolyLight;
